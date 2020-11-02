@@ -1,0 +1,32 @@
+config:
+    name: "后台新增枚举设置"
+    variables:
+        env_type: ${ENV(env_type)}
+    base_url: "${get_base_url($env_type)}"
+teststeps:
+-   name: "登录财务家园后台"
+    api: api/admin/common/login_api.yml
+#    variables:
+#        password: ${ENV(admin_cwjy_password)}
+#        userAccount: ${ENV(admin_cwjy_username)}
+    extract:
+      - ecpToken: content.body.ecpToken
+      - tenantGid: content.body.tenantGid   #租户id
+    validate:
+    -     eq:
+          - status_code
+          - 200
+-   name: "后台增加枚举类型"
+    variables:
+        ecsToken: $ecpToken
+        name: $name
+        note: $note
+        typeKey: $typeKey
+    api: api/admin/common/addEnumType_api.yml
+    extract:
+        gid: content.body.gid     #新增枚举的gid
+        name: content.body.name   #新增枚举的名字
+    validate:
+    -   eq:
+        - status_code
+        - 200

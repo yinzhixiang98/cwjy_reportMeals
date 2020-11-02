@@ -1,0 +1,22 @@
+config:
+    name: "园区通报餐"
+teststeps:
+-   name: "登录财务家园后台"
+    api: api/admin/common/ygjyLogin_api.yml
+#    variables:
+#        password: ${ENV(admin_cwjy_password)}
+#        userAccount: ${ENV(admin_cwjy_username)}
+    extract:
+      - ecpToken: content.body.ecpToken
+    validate:
+    -     eq:
+          - status_code
+          - 200
+-   name: "报餐"
+    variables:
+      ecsToken: $ecpToken
+    api: api/admin/reportMeals/saveReportMeals_api.yml
+    validate:
+      - eq:
+          - status_code
+          - 200

@@ -1,0 +1,36 @@
+#测试用于租户yzx_ad,1234.abcd登录系统后台
+#用于登录获取ecpToken
+
+name: get_ecpToken
+variables:
+    password: ${ENV(password)}
+    userAccount: ${ENV(userAccount)}
+    env_type: ${ENV(env_type)}
+base_url: "${get_base_url($env_type)}"
+request:
+  verify: False
+  url:  /mapp/restful/auth/backstageLoginValidate
+  method: POST
+  headers:
+    Content-Type: application/json;charset=UTF-8
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36
+  json:
+    password: $password
+    userAccount: $userAccount
+validate:
+- eq:
+  - status_code
+  - 200
+- eq:
+  - headers.Content-Type
+  - application/json;charset=UTF-8
+- eq:
+  - content.code
+  - 0
+- eq:
+  - content.message
+  - SUCCESS
+- eq:
+  - content.typeCode
+  - 0

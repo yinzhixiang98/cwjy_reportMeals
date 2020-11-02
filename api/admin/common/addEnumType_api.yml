@@ -1,0 +1,35 @@
+name: "添加枚举类型"
+variables:
+  env_type: ${ENV(env_type)}
+base_url: ${get_base_url($env_type)}
+request:
+        verify: False
+        headers:
+            Content-Type: application/json;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML,
+                like Gecko) Chrome/75.0.3770.100 Safari/537.36
+            clientTimeStr: '0.35504108629291764'
+            ecs_token: $ecsToken
+            pageid: enum_enumTypeListPage:IGhERG3XoN4iaxtZct0Va3jWtLvO7KUL
+        json:
+            name: $name
+            note: $note
+            typeKey: $typeKey
+        method: POST
+        url: /mapp/restful/enumType/add
+validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.message
+        - SUCCESS
+    -   eq:
+        - content.typeCode
+        - 0

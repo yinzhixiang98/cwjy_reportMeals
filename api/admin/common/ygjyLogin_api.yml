@@ -1,0 +1,38 @@
+name: "登录远光家园"
+variables:
+    password: ${ENV(ygjy_password)}
+    userAccount: ${ENV(ygjy_userName)}
+request:
+        verify: False
+        data:
+            deviceId: '863064010841692'
+            loginType: '1'
+            password: $password
+            userName: $userAccount
+        headers:
+            Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+            MOBILE: android
+            User-Agent: com.ygsoft.ygjy.ygedu/4.5.4 (google Google(google Pixel 2);Android
+                5.1.1)
+            charset: UTF-8
+            ecp_token: 1d3b46a7cf0c450ca028219ec0163c99
+            ecs_token: 1d3b46a7cf0c450ca028219ec0163c99
+            udid: '863064010841692'
+        method: POST
+        url: https://ygjy.ismartwork.cn/ecs/mapp/restful/login
+validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.message
+        - SUCCESS
+    -   eq:
+        - content.typeCode
+        - 0
