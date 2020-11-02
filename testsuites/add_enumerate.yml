@@ -7,8 +7,8 @@ testcases:
 #            ecsToken-name-note-typeKey: ${P(data/enumerate.csv)}
         parameters:                        #参数一对一
             name-note-typeKey:
-            - [测试6,测试6,tes6]
-            - [测试7,测试7,tes7]
+            - [测试9,测试9,tes9]
+            - [测试9,测试9,tes9]
     add_enum2:
         testcase: testcases/loginAndAddEnum_testcase.yml
         parameters:                        #csv文件存放user数据
