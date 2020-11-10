@@ -3,3 +3,5 @@ config:
 testcases:
   - name: "报餐"
     testcase: testcases/admin/reportMeals/reportMeals_test.yml
+  - name: "报餐"
+    testcase: testcases/admin/reportMeals/reportMealswsq_test.yml

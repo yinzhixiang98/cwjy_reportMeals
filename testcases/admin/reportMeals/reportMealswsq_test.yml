@@ -4,8 +4,8 @@ teststeps:
 -   name: "登录财务家园后台"
     api: api/admin/common/ygjyLogin_api.yml
     variables:
-        password: ${ENV(admin_cwjy_password)}    #yinzhixiang
-        userAccount: ${ENV(admin_cwjy_username)}
+        password: ${ENV(wsq_password)}    #wangshuqing
+        userAccount: ${ENV(wsq_userName)}
     extract:
       - ecpToken: content.body.ecpToken
     validate:
