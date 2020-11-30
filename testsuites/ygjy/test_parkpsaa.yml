@@ -1,7 +1,7 @@
 config:
     name: "远光家园——园区通"
 testcases:
-  - name: "报餐"
+  - name: "报餐1"
     testcase: testcases/admin/reportMeals/reportMeals_test.yml
-  - name: "报餐"
+  - name: "报餐2"
     testcase: testcases/admin/reportMeals/reportMealswsq_test.yml
